@@ -97,6 +97,15 @@ class CollectdPlugin(Plugin):
                 }
 
             },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>contextswitch)\.(?P<value>contextswitch)$',
+                'target_type': 'counter',
+                'tags': {
+                    'unit': 'fork/s',
+                    'what': 'contextswitch'
+                }
+
+            },
         ]
         super(CollectdPlugin, self).__init__(config)
 
