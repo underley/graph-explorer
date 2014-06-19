@@ -124,6 +124,15 @@ class CollectdPlugin(Plugin):
                 }
 
             },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>conntrack)\.(?P<value>conntrack)$',
+                'target_type': 'gauge',
+                'tags': {
+                    'unit': 'entries',
+                    'what': 'conntrack'
+                }
+
+            },
         ]
         super(CollectdPlugin, self).__init__(config)
 
