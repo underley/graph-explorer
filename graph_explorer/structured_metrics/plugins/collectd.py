@@ -106,6 +106,15 @@ class CollectdPlugin(Plugin):
                 }
 
             },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>users)\.(?P<value>users)$',
+                'target_type': 'gauge',
+                'tags': {
+                    'unit': 'users',
+                    'what': 'users_logged'
+                }
+
+            },
         ]
         super(CollectdPlugin, self).__init__(config)
 
