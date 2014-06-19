@@ -88,7 +88,15 @@ class CollectdPlugin(Plugin):
                     'where': 'swap_io'
                 }
             },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>tcpconns)[\-\.](?P<port>)[\-\.]local\.tcp_connections[\-\.](?P<state>.*)$',
+                'target_type': 'gauge',
+                'tags': {
+                    'unit': 'connections',
+                    'what': 'tcp_connections_in_state'
+                }
 
+            },
         ]
         super(CollectdPlugin, self).__init__(config)
 
