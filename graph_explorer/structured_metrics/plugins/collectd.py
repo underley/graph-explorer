@@ -44,7 +44,12 @@ class CollectdPlugin(Plugin):
             {
                 'match': prefix + '(?P<server>[^\.]+)\.(?P<collectd_plugin>disk)[\-\.](?P<device>[^\.]+)\.disk_(?P<wt>[^\.]+)\.(?P<operation>[^\.]+)$',
                 'configure': lambda self, target: self.fix_disk(target)
-            }
+            },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>irq)\.irq[\-\.](?P<wt>.*)$',
+                'target_type': 'counter'
+            },
+
         ]
         super(CollectdPlugin, self).__init__(config)
 
