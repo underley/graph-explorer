@@ -54,7 +54,24 @@ class CollectdPlugin(Plugin):
                 }
 
             },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>processes)\.ps_state[\-\.](?P<state>.*)$',
+                'target_type': 'gauge',
+                'tags': {
+                    'unit': 'procs',
+                    'what': 'procs_in_state'
+                }
 
+            },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>processes)\.(?P<value>fork_rate)$',
+                'target_type': 'counter',
+                'tags': {
+                    'unit': 'procs',
+                    'what': 'fork_rate'
+                }
+
+            },
         ]
         super(CollectdPlugin, self).__init__(config)
 
