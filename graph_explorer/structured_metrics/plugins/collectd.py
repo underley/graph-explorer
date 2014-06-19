@@ -47,7 +47,12 @@ class CollectdPlugin(Plugin):
             },
             {
                 'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>irq)\.irq[\-\.](?P<wt>.*)$',
-                'target_type': 'counter'
+                'target_type': 'counter',
+                'tags': {
+                    'unit': 'calls',
+                    'what': 'irq_calls'
+                }
+
             },
 
         ]
