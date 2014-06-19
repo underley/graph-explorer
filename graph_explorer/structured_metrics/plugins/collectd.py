@@ -10,7 +10,7 @@ class CollectdPlugin(Plugin):
 
         self.targets = [
             {
-                'match': prefix + '(?P<server>[^\.]+)\.(?P<collectd_plugin>cpu)\.(?P<core>[^\.]+)\.cpu\.(?P<type>[^\.]+)$',
+                'match': prefix + '(?P<server>[^\.]+)\.(?P<collectd_plugin>cpu)[\-\.](?P<core>[^\.]+)\.cpu[\-\.](?P<type>[^\.]+)$',
                 'target_type': 'gauge_pct',
                 'tags': {
                     'unit': 'Jiff',
@@ -23,13 +23,13 @@ class CollectdPlugin(Plugin):
                 'configure': lambda self, target: self.fix_load(target)
             },
             {
-                'match': prefix + '(?P<server>[^\.]+)\.interface\.(?P<device>[^\.]+)\.if_(?P<wt>[^\.]+)\.(?P<dir>[^\.]+)$',
+                'match': prefix + '(?P<server>[^\.]+)\.interface[\-\.](?P<device>[^\.]+)\.if_(?P<wt>[^\.]+)\.(?P<dir>[^\.]+)$',
                 'target_type': 'counter',
                 'tags': {'collectd_plugin': 'network'},
                 'configure': lambda self, target: self.fix_network(target)
             },
             {
-                'match': prefix + '(?P<server>[^\.]+)\.memory\.memory\.(?P<type>[^\.]+)$',
+                'match': prefix + '(?P<server>[^\.]+)\.memory\.memory[\-\.](?P<type>[^\.]+)$',
                 'target_type': 'gauge',
                 'tags': {
                     'unit': 'B',
@@ -37,12 +37,12 @@ class CollectdPlugin(Plugin):
                 }
             },
             {
-                'match': prefix + '(?P<server>[^\.]+)\.df\.(?P<mountpoint>[^\.]+)\.df_complex\.(?P<type>[^\.]+)$',
+                'match': prefix + '(?P<server>[^\.]+)\.df[\-\.](?P<mountpoint>[^\.]+)\.df_complex[\-\.](?P<type>[^\.]+)$',
                 'target_type': 'gauge',
                 'tags': {'unit': 'B'}
             },
             {
-                'match': prefix + '(?P<server>[^\.]+)\.(?P<collectd_plugin>disk)\.(?P<device>[^\.]+)\.disk_(?P<wt>[^\.]+)\.(?P<operation>[^\.]+)$',
+                'match': prefix + '(?P<server>[^\.]+)\.(?P<collectd_plugin>disk)[\-\.](?P<device>[^\.]+)\.disk_(?P<wt>[^\.]+)\.(?P<operation>[^\.]+)$',
                 'configure': lambda self, target: self.fix_disk(target)
             }
         ]
