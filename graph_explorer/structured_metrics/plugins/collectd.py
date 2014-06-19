@@ -89,7 +89,7 @@ class CollectdPlugin(Plugin):
                 }
             },
             {
-                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>tcpconns)[\-\.](?P<port>)[\-\.]local\.tcp_connections[\-\.](?P<state>.*)$',
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>tcpconns)[\-\.](?P<port>\d+)[\-\.]local\.tcp_connections[\-\.](?P<state>.*)$',
                 'target_type': 'gauge',
                 'tags': {
                     'unit': 'connections',
