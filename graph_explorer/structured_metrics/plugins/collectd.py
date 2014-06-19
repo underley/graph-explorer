@@ -72,6 +72,23 @@ class CollectdPlugin(Plugin):
                 }
 
             },
+            {
+                'match': prefix + '(?P<server>[^\.]+)\.swap\.swap[\-\.](?P<type>[^\.]+)$',
+                'target_type': 'gauge',
+                'tags': {
+                    'unit': 'B',
+                    'where': 'swap'
+                }
+            },
+            {
+                'match': prefix + '(?P<server>[^\.]+)\.swap\.swap_io[\-\.](?P<dir>[^\.]+)$',
+                'target_type': 'counter',
+                'tags': {
+                    'unit': 'B',
+                    'where': 'swap_io'
+                }
+            },
+
         ]
         super(CollectdPlugin, self).__init__(config)
 
