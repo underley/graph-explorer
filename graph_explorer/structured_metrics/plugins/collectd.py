@@ -115,6 +115,15 @@ class CollectdPlugin(Plugin):
                 }
 
             },
+            {
+                'match': prefix + '(?P<server>.+?)\.(?P<collectd_plugin>entropy)\.(?P<value>entropy)$',
+                'target_type': 'gauge',
+                'tags': {
+                    'unit': 'bits',
+                    'what': 'entropy'
+                }
+
+            },
         ]
         super(CollectdPlugin, self).__init__(config)
 
